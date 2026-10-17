@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --pixel-bg: #0d0221;
+  --pixel-bg-2: #1a0b3d;
+  --pixel-cyan: #00f0ff;
+  --pixel-pink: #ff2e88;
+  --pixel-yellow: #ffe74c;
+  --pixel-green: #5cff5c;
+  --pixel-purple: #9d4edd;
+  --pixel-orange: #ff9f1c;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--pixel-bg);
+  color: #e0e0e0;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+}
+
+.font-pixel {
+  font-family: 'Press Start 2P', monospace;
+}
+
+.font-vt {
+  font-family: 'VT323', monospace;
+}
+
+/* Pixelated starfield background */
+.pixel-bg {
+  background-color: var(--pixel-bg);
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(157, 78, 221, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0, 240, 255, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255, 46, 136, 0.1) 0%, transparent 40%);
+}
+
+/* Pixel border helper using box-shadow layers (no blur) */
+.pixel-border {
+  box-shadow:
+    0 -4px 0 0 var(--pixel-cyan),
+    0 4px 0 0 var(--pixel-cyan),
+    -4px 0 0 0 var(--pixel-cyan),
+    4px 0 0 0 var(--pixel-cyan),
+    0 0 0 4px var(--pixel-bg);
+}
+
+.pixel-border-pink {
+  box-shadow:
+    0 -4px 0 0 var(--pixel-pink),
+    0 4px 0 0 var(--pixel-pink),
+    -4px 0 0 0 var(--pixel-pink),
+    4px 0 0 0 var(--pixel-pink);
+}
+
+.pixel-border-yellow {
+  box-shadow:
+    0 -4px 0 0 var(--pixel-yellow),
+    0 4px 0 0 var(--pixel-yellow),
+    -4px 0 0 0 var(--pixel-yellow),
+    4px 0 0 0 var(--pixel-yellow);
+}
+
+.pixel-border-green {
+  box-shadow:
+    0 -4px 0 0 var(--pixel-green),
+    0 4px 0 0 var(--pixel-green),
+    -4px 0 0 0 var(--pixel-green),
+    4px 0 0 0 var(--pixel-green);
+}
+
+/* Pixel button - chunky retro */
+.pixel-btn {
+  font-family: 'Press Start 2P', monospace;
+  position: relative;
+  padding: 1rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.08s steps(2), filter 0.08s steps(2);
+  image-rendering: pixelated;
+}
+
+.pixel-btn:hover {
+  filter: brightness(1.15);
+}
+
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+}
+
+.pixel-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Blinking animation */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.blink {
+  animation: blink 1s steps(2) infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.float {
+  animation: float 2s steps(4) infinite;
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+}
+.pulse-glow {
+  animation: pulse-glow 1.2s steps(3) infinite;
+}
+
+/* Slide-in for leaderboard rows */
+@keyframes slide-in {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.slide-in {
+  animation: slide-in 0.3s steps(4) forwards;
+}
+
+/* Countdown bar shrink */
+@keyframes shrink {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+/* Scanline overlay */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.12) 3px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
+  z-index: 9999;
+}
+
+/* Scrollbar pixel style */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--pixel-bg); }
+::-webkit-scrollbar-thumb { background: var(--pixel-purple); border: 2px solid var(--pixel-bg); }
+
+/* Option button press state */
+.option-correct {
+  animation: pulse-glow 0.5s steps(3) 3;
+}
+.option-wrong {
+  animation: blink 0.4s steps(2) 3;
+}
