@@ -44,7 +44,7 @@ A live quiz game where a host creates a room code, players join, and scores upda
    ```
 
 ## Demo Preview Screenshot
-![Project Preview Screenshot](assets/screenshot.png)
+![Project Preview Screenshot](screencapture-multiplayer-quiz-gam-ylc1-bolt-host-2026-10-17-21_27_10.png)
 
 ## Author
 - **Harshit Kamra**
